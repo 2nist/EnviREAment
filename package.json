@@ -15,12 +15,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matthewsongbase/EnviREAment.git"
+    "url": "https://github.com/2nist/EnviREAment.git"
   },
   "bugs": {
-    "url": "https://github.com/matthewsongbase/EnviREAment/issues"
+    "url": "https://github.com/2nist/EnviREAment/issues"
   },
-  "homepage": "https://github.com/matthewsongbase/EnviREAment#readme",
+  "homepage": "https://github.com/2nist/EnviREAment#readme",
   "scripts": {
     "test": "lua enhanced_test_runner.lua",
     "demo": "lua examples/main.lua",

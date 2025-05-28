@@ -25,9 +25,9 @@ dependencies = []
 dynamic = ["version"]
 
 [project.urls]
-homepage = "https://github.com/matthewsongbase/EnviREAment"
-repository = "https://github.com/matthewsongbase/EnviREAment.git"
-documentation = "https://github.com/matthewsongbase/EnviREAment/docs"
+homepage = "https://github.com/2nist/EnviREAment"
+repository = "https://github.com/2nist/EnviREAment.git"
+documentation = "https://github.com/2nist/EnviREAment/docs"
 changelog = "https://github.com/matthewsongbase/EnviREAment/releases"
 
 [project.scripts]
