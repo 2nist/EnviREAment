@@ -1,0 +1,3 @@
+[console_scripts]
+envireament-demo = envireament.cli:run_demo
+envireament-test = envireament.cli:run_tests
