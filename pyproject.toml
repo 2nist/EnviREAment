@@ -25,10 +25,10 @@ dependencies = []
 dynamic = ["version"]
 
 [project.urls]
-homepage = "https://github.com/your-username/EnviREAment"
-repository = "https://github.com/your-username/EnviREAment.git"
-documentation = "https://github.com/your-username/EnviREAment/docs"
-changelog = "https://github.com/your-username/EnviREAment/releases"
+homepage = "https://github.com/matthewsongbase/EnviREAment"
+repository = "https://github.com/matthewsongbase/EnviREAment.git"
+documentation = "https://github.com/matthewsongbase/EnviREAment/docs"
+changelog = "https://github.com/matthewsongbase/EnviREAment/releases"
 
 [project.scripts]
 envireament-test = "envireament.cli:run_tests"
