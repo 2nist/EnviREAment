@@ -15,9 +15,9 @@ A VS Code extension that integrates the EnviREAment Virtual REAPER Environment d
 
 1. Install the extension from the VS Code marketplace
 2. Ensure you have either:
-   - EnviREAment Python package: `pip install envireament`
-   - EnviREAment npm package: `npm install envireament`
-   - Or the Lua files directly in your workspace
+    - EnviREAment Python package: `pip install envireament`
+    - EnviREAment npm package: `npm install envireament`
+    - Or the Lua files directly in your workspace
 
 ## Usage
 
