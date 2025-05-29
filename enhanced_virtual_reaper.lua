@@ -42,6 +42,11 @@ local VirtualState = {
     errors = 0,
     warnings = 0,
     start_time = os.time()
+  },
+
+  -- Tempo and Time Signature State
+  tempo_markers = {
+    { time = 0.0, measure_offset = 0, beat_offset = 0.0, bpm = 120.0, timesig_num = 4, timesig_denom = 4, linear = true }
   }
 }
 
@@ -665,6 +670,183 @@ local mock_reaper = {
   SetProjectMarker = function(markrgnidx, isrgn, pos, rgnend, name)
     log_api_call("SetProjectMarker", markrgnidx, isrgn, pos, rgnend, name)
     print("📝 [Virtual] Marker updated: " .. (name or "Marker"))
+  end,
+
+  -- ==================== TEMPO AND TIME SIGNATURE FUNCTIONS ====================
+
+  GetTempoTimeSigMarker = function(proj, ptidx)
+    log_api_call("GetTempoTimeSigMarker", proj, ptidx)
+    if VirtualState.tempo_markers[ptidx + 1] then
+      local marker = VirtualState.tempo_markers[ptidx + 1]
+      return true, marker.time, marker.measure_offset, marker.beat_offset, marker.bpm, marker.timesig_num, marker.timesig_denom, marker.linear
+    end
+    return false, 0, 0, 0, 0, 0, 0, false
+  end,
+
+  GetProjectTimeSignature2 = function(proj, time) -- time argument is often ignored by scripts, using first marker
+    log_api_call("GetProjectTimeSignature2", proj, time)
+    if VirtualState.tempo_markers[1] then
+      local marker = VirtualState.tempo_markers[1] -- Typically reflects the start of the project or current effective
+      return marker.timesig_num, marker.timesig_denom
+    end
+    return 4, 4 -- Default
+  end,
+
+  SetProjectTimeSignature2 = function(proj, time, num, den) -- time argument often for future use, applies to first marker
+    log_api_call("SetProjectTimeSignature2", proj, time, num, den)
+    if VirtualState.tempo_markers[1] then
+      VirtualState.tempo_markers[1].timesig_num = num
+      VirtualState.tempo_markers[1].timesig_denom = den
+      print("🎼 [Virtual] Project time signature set to: " .. num .. "/" .. den)
+      return true
+    end
+    return false
+  end,
+
+  GetTempo = function() -- Gets tempo at current edit cursor position (simplified)
+    log_api_call("GetTempo")
+    local currentTime = VirtualState.time or 0
+    local effectiveBpm = 120.0
+    for i = #VirtualState.tempo_markers, 1, -1 do
+      if VirtualState.tempo_markers[i].time <= currentTime then
+        effectiveBpm = VirtualState.tempo_markers[i].bpm
+        break
+      end
+    end
+    return effectiveBpm
+  end,
+
+  GetTempoAtTime = function(time)
+    log_api_call("GetTempoAtTime", time)
+    local effectiveBpm = 120.0
+    if not VirtualState.tempo_markers or #VirtualState.tempo_markers == 0 then return effectiveBpm end
+    local current_marker = VirtualState.tempo_markers[1]
+    for _, marker in ipairs(VirtualState.tempo_markers) do
+      if marker.time <= time then
+        current_marker = marker
+      else
+        break
+      end
+    end
+    return current_marker.bpm
+  end,
+
+  SetTempoTimeSigMarker = function(proj, ptidx, time, measurepos, beatpos, bpm, timesig_num, timesig_denom, lineartempo)
+    log_api_call("SetTempoTimeSigMarker", proj, ptidx, time, measurepos, beatpos, bpm, timesig_num, timesig_denom, lineartempo)
+    if VirtualState.tempo_markers[ptidx + 1] then
+      VirtualState.tempo_markers[ptidx + 1] = {
+        time = time, measure_offset = measurepos, beat_offset = beatpos,
+        bpm = bpm, timesig_num = timesig_num, timesig_denom = timesig_denom, linear = lineartempo
+      }
+      table.sort(VirtualState.tempo_markers, function(a,b) return a.time < b.time end)
+      print("⏱️ [Virtual] Tempo marker " .. ptidx .. " updated.")
+      return true
+    end
+    return false
+  end,
+
+  AddTempoTimeSigMarker = function(proj, time, measurepos, beatpos, bpm, timesig_num, timesig_denom, lineartempo)
+    log_api_call("AddTempoTimeSigMarker", proj, time, measurepos, beatpos, bpm, timesig_num, timesig_denom, lineartempo)
+    local new_marker = {
+      time = time, measure_offset = measurepos, beat_offset = beatpos,
+      bpm = bpm, timesig_num = timesig_num, timesig_denom = timesig_denom, linear = lineartempo
+    }
+    table.insert(VirtualState.tempo_markers, new_marker)
+    table.sort(VirtualState.tempo_markers, function(a,b) return a.time < b.time end)
+    -- Find new index
+    for i, marker in ipairs(VirtualState.tempo_markers) do
+      if marker == new_marker then return i - 1 end
+    end
+    return #VirtualState.tempo_markers - 1
+  end,
+
+  DeleteTempoTimeSigMarker = function(proj, ptidx)
+    log_api_call("DeleteTempoTimeSigMarker", proj, ptidx)
+    if VirtualState.tempo_markers[ptidx + 1] then
+      table.remove(VirtualState.tempo_markers, ptidx + 1)
+      print("🗑️ [Virtual] Tempo marker " .. ptidx .. " deleted.")
+      return true
+    end
+    return false
+  end,
+
+  CountTempoTimeSigMarkers = function(proj)
+    log_api_call("CountTempoTimeSigMarkers", proj)
+    return #VirtualState.tempo_markers
+  end,
+
+  TimeMap_GetDividedBpmAtTime = function(time)
+    log_api_call("TimeMap_GetDividedBpmAtTime", time)
+    -- This is a simplified version. Real implementation depends on project settings.
+    return mock_reaper.GetTempoAtTime(time)
+  end,
+
+  TimeMap_GetBpmAtTime = function(time) -- Alias for GetTempoAtTime in this mock
+    log_api_call("TimeMap_GetBpmAtTime", time)
+    return mock_reaper.GetTempoAtTime(time)
+  end,
+
+  TimeMap2_timeToBeats = function(proj, time, measures_out, cml_out, fullbeats_out, cdenom_out)
+    log_api_call("TimeMap2_timeToBeats", proj, time)
+    local current_bpm = mock_reaper.GetTempoAtTime(time)
+    local beats = (time / 60.0) * current_bpm
+
+    -- Simplified calculation for measures and beats
+    -- Assumes constant time signature for simplicity in mock
+    local ts_num, ts_den = mock_reaper.GetProjectTimeSignature2(proj, time)
+    ts_num = ts_num or 4
+    ts_den = ts_den or 4 -- Should not be 0
+
+    if ts_den == 0 then ts_den = 4 end -- Prevent division by zero
+
+    local beats_per_measure = ts_num * (4 / ts_den) -- e.g. 4/4 -> 4 beats, 6/8 -> 3 beats (if quarter note is beat)
+                                                 -- More accurately, ts_num for x/4, ts_num/2 for x/8 if quarter is beat.
+                                                 -- For simplicity, let's assume ts_num is beats per measure if ts_den is 4.
+    if beats_per_measure == 0 then beats_per_measure = 4 end
+
+
+    local measures = math.floor(beats / beats_per_measure)
+    local remaining_beats = beats - (measures * beats_per_measure)
+    
+    -- For cml_out (cumulative measures length in beats) - this is complex, simplified here
+    local cml = measures * beats_per_measure
+
+    -- For fullbeats_out (cumulative beats from project start)
+    local full_beats_val = beats
+
+    -- For cdenom_out (time signature denominator)
+    local cdenom = ts_den
+    
+    -- Note: The REAPER API returns these values directly if pointers are passed.
+    -- In Lua, we'd return them as multiple values.
+    -- For a more accurate mock, one might need to store these in a table passed as cml_out etc. if that's how the script expects it.
+    -- However, typical Lua usage is to get them as return values.
+    -- Returning as multiple values: measures + 1, remaining_beats, cml, full_beats_val, cdenom
+    return beats -- Primary return is total beats from start of project
+                 -- The other out parameters are harder to mock simply without knowing how the calling Lua script handles them.
+                 -- Typically, a script would pass tables to be filled.
+                 -- For now, returning the main 'beats' value.
+  end,
+
+  TimeMap2_beatsToTime = function(proj, beats, measures_in)
+    log_api_call("TimeMap2_beatsToTime", proj, beats, measures_in)
+    -- Simplified: assumes constant tempo and time signature
+    local current_bpm = mock_reaper.GetTempoAtTime(0) -- Tempo at project start for simplicity
+    if current_bpm == 0 then current_bpm = 120.0 end -- Prevent division by zero
+    
+    local total_beats = beats
+    if measures_in and measures_in > 0 then
+        local ts_num, ts_den = mock_reaper.GetProjectTimeSignature2(proj, 0)
+        ts_num = ts_num or 4
+        ts_den = ts_den or 4
+        if ts_den == 0 then ts_den = 4 end
+        local beats_per_measure = ts_num * (4 / ts_den)
+        if beats_per_measure == 0 then beats_per_measure = 4 end
+        total_beats = (measures_in * beats_per_measure) + beats
+    end
+    
+    local time = (total_beats / current_bpm) * 60.0
+    return time
   end,
   
   -- ==================== ENHANCED IMGUI CONTEXT MANAGEMENT ====================
