@@ -6,13 +6,13 @@
 local song_browser = {}
 
 -- Load dependencies
-local success, json = pcall(function() return require("utils.json") end)
+local success, json = pcall(function() return require("enviREAment_core_lib.utils.json") end)
 if not success then
   json = {decode = function() return {} end, encode = function() return "{}" end}
   reaper.ShowConsoleMsg("Error loading JSON module: " .. tostring(json) .. "\n")
 end
 
-local success, file_ops = pcall(function() return require("utils.file_operations") end)
+local success, file_ops = pcall(function() return require("enviREAment_core_lib.utils.file_operations") end)
 if not success then
   file_ops = {}
   reaper.ShowConsoleMsg("Error loading file_operations module: " .. tostring(file_ops) .. "\n")
@@ -25,7 +25,7 @@ local utils = {
 }
 
 -- Try to load REAPER helper functions
-local success, reaper_module = pcall(function() return require("utils.reaper_helpers") end)
+local success, reaper_module = pcall(function() return require("enviREAment_core_lib.utils.reaper_helpers") end)
 if success then
   utils.reaper = reaper_module
 else
@@ -33,7 +33,7 @@ else
 end
 
 -- Try to load MIDI helper functions
-local success, midi_module = pcall(function() return require("utils.midi_helpers") end)
+local success, midi_module = pcall(function() return require("enviREAment_core_lib.utils.midi_helpers") end)
 if success then
   utils.midi = midi_module
 else
@@ -637,7 +637,7 @@ function song_browser.draw(ctx, ui_state)
   
   -- Ensure query_input_buffer is a string before calling ImGui_InputText
   if type(query_input_buffer) ~= "string" then
-    reaper.ShowConsoleMsg("[song_browser.draw] Warning: state.query was type '" .. type(query_input_buffer) .. "'. Resetting to empty string.\\n")
+    reaper.ShowConsoleMsg("[song_browser.draw] Warning: state.query was type '" .. type(query_input_buffer) .. "'. Resetting to empty string.\n")
     query_input_buffer = ""
     state.query = "" -- Also reset state.query to ensure consistency
   end
@@ -649,7 +649,7 @@ function song_browser.draw(ctx, ui_state)
     if type(query_input_buffer) == "string" then
       state.query = query_input_buffer -- Update state.query with the new text if it changed and is a string
     else
-      reaper.ShowConsoleMsg("[song_browser.draw] Warning: ImGui_InputText returned non-string for new text. Query not updated.\\n")
+      reaper.ShowConsoleMsg("[song_browser.draw] Warning: ImGui_InputText returned non-string for new text. Query not updated.\n")
     end
   end
   

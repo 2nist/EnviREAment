@@ -8,6 +8,11 @@ local APP_NAME = "Songbase"
 
 -- Setup package path for module loading
 local script_path = reaper.GetResourcePath() .. "/Scripts/songbase"
+-- Add submodule paths
+package.path = script_path .. "/enviREAment_core_lib/?.lua;" .. package.path
+package.path = script_path .. "/enviREAment_core_lib/utils/?.lua;" .. package.path
+package.path = script_path .. "/enviREAment_core_lib/core/?.lua;" .. package.path
+-- Original paths (can be kept for local project utils/ui if any, or removed if all are in core)
 package.path = script_path .. "/?.lua;" .. package.path
 package.path = script_path .. "/utils/?.lua;" .. package.path
 package.path = script_path .. "/ui/?.lua;" .. package.path
@@ -26,8 +31,11 @@ else
   config = {
     paths = {
       base = script_path,
-      datasets = script_path .. "/datasets",
-      ui = script_path .. "/ui"
+      -- Update these paths if they are now part of the core library
+      datasets = script_path .. "/datasets", 
+      ui = script_path .. "/ui",
+      -- Add path for core library data if needed
+      core_data = script_path .. "/enviREAment_core_lib/data" 
     },
     ui = {
       default_view = "song_browser",
@@ -38,7 +46,7 @@ else
 end
 
 -- Load JSON utility
-success, utils.json = pcall(function() return require("utils.json") end)
+success, utils.json = pcall(function() return require("enviREAment_core_lib.utils.json") end)
 if not success then
   reaper.ShowConsoleMsg("⚠️ Error loading JSON: " .. tostring(utils.json) .. "\n")
   utils.json = {
@@ -48,8 +56,7 @@ if not success then
 end
 
 -- Load file operations utility
--- Load file operations utility
-local ok_file, file_mod = pcall(require, "utils.file_operations")
+local ok_file, file_mod = pcall(require, "enviREAment_core_lib.utils.file_operations")
 if ok_file and type(file_mod) == "table" then
   utils.file = file_mod
 else
@@ -70,14 +77,14 @@ if type(utils.file) ~= "table" then
 end
 
 -- Load REAPER helpers
-success, utils.reaper = pcall(function() return require("utils.reaper_helpers") end)
+success, utils.reaper = pcall(function() return require("enviREAment_core_lib.utils.reaper_helpers") end)
 if not success then
   reaper.ShowConsoleMsg("⚠️ Error loading REAPER helpers: " .. tostring(utils.reaper) .. "\n")
   utils.reaper = {}
 end
 
 -- Load theme helper
-success, utils.theme = pcall(function() return require("utils.theme_helper") end)
+success, utils.theme = pcall(function() return require("enviREAment_core_lib.utils.theme_helper") end)
 if not success then
   reaper.ShowConsoleMsg("⚠️ Error loading theme helper: " .. tostring(utils.theme) .. "\n")
   utils.theme = {}
@@ -417,7 +424,7 @@ local function main()
   else
     reaper.ShowConsoleMsg("⚠️ Failed to initialize UI\n")
     if ui_state.ctx then -- Check if context was created before trying to shut down
-      reaper.ShowConsoleMsg("Attempting to shutdown UI due to initialization failure...\\n")
+      reaper.ShowConsoleMsg("Attempting to shutdown UI due to initialization failure...\n")
       shutdown_ui() -- Call shutdown to cleanup theme and context
     end
   end
