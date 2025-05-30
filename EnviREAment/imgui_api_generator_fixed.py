@@ -120,9 +120,9 @@ class ImGuiAPIExtractor:
                 
             print(f"📊 Extracted {len(self.extracted_functions)} functions from demo.lua")
             
-            if len(self.extracted_functions) < 10:  # If extraction seems too low, show sample
+            if len(self.extracted_functions) < 50:  # If extraction seems too low, show sample
                 print("🔍 Sample extracted functions:")
-                for func in list(self.extracted_functions)[:5]:
+                for func in list(self.extracted_functions)[:10]:
                     print(f"   - {func}")
                     
             return list(self.extracted_functions)
@@ -151,7 +151,15 @@ class ImGuiAPIExtractor:
             "ImGui_GetItemRectMin", "ImGui_GetItemRectMax", "ImGui_GetItemRectSize",
             "ImGui_DrawList_AddLine", "ImGui_DrawList_AddRect", "ImGui_DrawList_AddText",
             "ImGui_DrawList_AddCircle", "ImGui_TreeNode", "ImGui_TreePop",
-            "ImGui_Selectable", "ImGui_MenuItem", "ImGui_BeginCombo", "ImGui_EndCombo"
+            "ImGui_Selectable", "ImGui_MenuItem", "ImGui_BeginCombo", "ImGui_EndCombo",
+            "ImGui_BeginListBox", "ImGui_EndListBox", "ImGui_BeginMenuBar", "ImGui_EndMenuBar",
+            "ImGui_BeginMainMenuBar", "ImGui_EndMainMenuBar", "ImGui_BeginTabBar", "ImGui_EndTabBar",
+            "ImGui_BeginTabItem", "ImGui_EndTabItem", "ImGui_SetTabItemClosed", "ImGui_TabItemButton",
+            "ImGui_BeginDragDropSource", "ImGui_EndDragDropSource", "ImGui_BeginDragDropTarget", "ImGui_EndDragDropTarget",
+            "ImGui_PushID", "ImGui_PopID", "ImGui_PushStyleColor", "ImGui_PopStyleColor",
+            "ImGui_PushStyleVar", "ImGui_PopStyleVar", "ImGui_PushFont", "ImGui_PopFont",
+            "ImGui_PushItemWidth", "ImGui_PopItemWidth", "ImGui_SetNextItemWidth", "ImGui_CalcItemWidth",
+            "ImGui_PushTextWrapPos", "ImGui_PopTextWrapPos", "ImGui_GetFont", "ImGui_GetFontSize"
         ]
 
 class ImGuiFunctionGenerator:
@@ -176,6 +184,8 @@ class ImGuiFunctionGenerator:
             return 'drawing'
         elif any(word in name_lower for word in ['tree']):
             return 'tree'
+        elif any(word in name_lower for word in ['push', 'pop']):
+            return 'stack'
         else:
             return 'other'
     
@@ -213,6 +223,11 @@ class ImGuiFunctionGenerator:
             'tree': '''    {func_name} = function(ctx, label, ...)
       log_api_call("{func_name}", ctx, label, ...)
       return false
+    end,''',
+            
+            'stack': '''    {func_name} = function(ctx, ...)
+      log_api_call("{func_name}", ctx, ...)
+      return true
     end,''',
             
             'other': '''    {func_name} = function(ctx, ...)
