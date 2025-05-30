@@ -1,0 +1,50 @@
+# Generated files
+generated_imgui_functions_root.lua
+generation_stats.txt
+integration_instructions.md
+integration_report.md
+workflow_optimization_report_*.md
+validation_report_*.md
+
+# Backup files
+backups/
+*.backup
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Node modules
+node_modules/
+
+# VS Code settings (keep tasks.json but ignore others)
+.vscode/settings.json
+.vscode/launch.json
+
+# Temporary files
+*.tmp
+*.temp
+permission_test.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+
+# Test output
+test_results/

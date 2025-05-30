@@ -1,0 +1,97 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Generate ImGui API Functions",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"imgui_api_generator_fixed.py"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/EnviREAment"
+			}
+		},
+		{
+			"label": "Integrate API Functions",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"integrate_api_functions.py"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/EnviREAment"
+			}
+		},
+		{
+			"label": "Optimize Workflow",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"workflow_optimizer.py"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/EnviREAment"
+			}
+		},
+		{
+			"label": "Full API Pipeline",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Generate ImGui API Functions",
+				"Integrate API Functions",
+				"Optimize Workflow"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Test Virtual REAPER",
+			"type": "shell",
+			"command": "lua",
+			"args": [
+				"enhanced_virtual_reaper.lua"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "dedicated"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/EnviREAment"
+			}
+		}
+	]
+}
