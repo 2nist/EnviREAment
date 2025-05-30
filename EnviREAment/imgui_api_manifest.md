@@ -1,0 +1,475 @@
+# Enhanced Virtual REAPER - ImGui API Manifest
+Generated: 2025-05-30 16:57:18.243752
+
+Total Functions: 437
+
+## Container Functions (40)
+
+- `ImGui_Begin(...)`
+- `ImGui_Begin(ctx, name, open, flags)`
+- `ImGui_BeginChild(ctx)`
+- `ImGui_BeginCombo(ctx, label, preview_value, flags)`
+- `ImGui_BeginDisabled(ctx)`
+- `ImGui_BeginDragDropSource(ctx)`
+- `ImGui_BeginDragDropTarget(ctx)`
+- `ImGui_BeginGroup(ctx)`
+- `ImGui_BeginItemTooltip(ctx)`
+- `ImGui_BeginListBox(ctx, label, size_w, size_h)`
+- `ImGui_BeginMainMenuBar(ctx)`
+- `ImGui_BeginMenu(ctx, label, enabled)`
+- `ImGui_BeginMenuBar(ctx)`
+- `ImGui_BeginPopup(ctx)`
+- `ImGui_BeginPopupContextItem(ctx)`
+- `ImGui_BeginPopupContextWindow(ctx)`
+- `ImGui_BeginPopupModal(ctx)`
+- `ImGui_BeginTabBar(ctx, str_id, flags)`
+- `ImGui_BeginTabItem(ctx, label, open, flags)`
+- `ImGui_BeginTable(ctx)`
+- `ImGui_BeginTooltip(ctx)`
+- `ImGui_End(...)`
+- `ImGui_End(ctx)`
+- `ImGui_EndChild(ctx)`
+- `ImGui_EndCombo(ctx)`
+- `ImGui_EndDisabled(ctx)`
+- `ImGui_EndDragDropSource(ctx)`
+- `ImGui_EndDragDropTarget(ctx)`
+- `ImGui_EndGroup(ctx)`
+- `ImGui_EndListBox(ctx)`
+- `ImGui_EndMainMenuBar(ctx)`
+- `ImGui_EndMenu(ctx)`
+- `ImGui_EndMenuBar(ctx)`
+- `ImGui_EndPopup(ctx)`
+- `ImGui_EndTabBar(ctx)`
+- `ImGui_EndTabItem(ctx)`
+- `ImGui_EndTable(ctx)`
+- `ImGui_EndTooltip(ctx)`
+- `ImGui_ListClipper_Begin(ctx)`
+- `ImGui_ListClipper_End(ctx)`
+
+## Input Functions (74)
+
+- `ImGui_AcceptDragDropPayload(ctx, label, value)`
+- `ImGui_AcceptDragDropPayloadFiles(ctx, label, value)`
+- `ImGui_AcceptDragDropPayloadRGB(ctx, label, value)`
+- `ImGui_AcceptDragDropPayloadRGBA(ctx, label, value)`
+- `ImGui_Col_SliderGrab()`
+- `ImGui_Col_SliderGrabActive()`
+- `ImGui_ColorButton(ctx, label, color)`
+- `ImGui_ColorConvertDouble4ToU32(ctx, color)`
+- `ImGui_ColorConvertHSVtoRGB(ctx, color)`
+- `ImGui_ColorEdit3(ctx, color)`
+- `ImGui_ColorEdit4(ctx, color)`
+- `ImGui_ColorPicker3(ctx, color)`
+- `ImGui_ColorPicker4(ctx, color)`
+- `ImGui_DebugFlashStyleColor(ctx, color)`
+- `ImGui_DragDouble(ctx, label, v, v_speed, v_min, v_max, format, flags)`
+- `ImGui_DragDouble2(ctx, label, value)`
+- `ImGui_DragDouble3(ctx, label, value)`
+- `ImGui_DragDouble4(ctx, label, value)`
+- `ImGui_DragDoubleN(ctx, label, value)`
+- `ImGui_DragFloat(ctx, label, value)`
+- `ImGui_DragFloatRange2(ctx, label, value)`
+- `ImGui_DragInt(ctx, label, v, v_speed, v_min, v_max, format, flags)`
+- `ImGui_DragInt2(ctx, label, value)`
+- `ImGui_DragInt3(ctx, label, value)`
+- `ImGui_DragInt4(ctx, label, value)`
+- `ImGui_DragIntRange2(ctx, label, value)`
+- `ImGui_DragScalar(ctx, label, value)`
+- `ImGui_DrawList_AddRectFilledMultiColor(ctx, color)`
+- `ImGui_GetColor(ctx, color)`
+- `ImGui_GetColorEx(ctx, color)`
+- `ImGui_GetColorU32(ctx, color)`
+- `ImGui_GetDragDropPayloadFile(ctx)`
+- `ImGui_GetInputQueueCharacter(ctx)`
+- `ImGui_GetMouseDragDelta(ctx)`
+- `ImGui_GetStyleColor(ctx, color)`
+- `ImGui_InputDouble(ctx, label, v, step, step_fast, format, flags)`
+- `ImGui_InputDouble2(ctx, label, value)`
+- `ImGui_InputDouble3(ctx, label, value)`
+- `ImGui_InputDouble4(ctx, label, value)`
+- `ImGui_InputDoubleN(ctx, label, value)`
+- `ImGui_InputFloat(ctx, label, value)`
+- `ImGui_InputInt(ctx, label, v, step, step_fast, flags)`
+- `ImGui_InputInt2(ctx, label, value)`
+- `ImGui_InputInt3(ctx, label, value)`
+- `ImGui_InputInt4(ctx, label, value)`
+- `ImGui_InputScalar(ctx, label, value)`
+- `ImGui_InputText(ctx, label, buf, buf_sz, flags, callback, user_data)`
+- `ImGui_InputTextMultiline(ctx, label, buf, buf_sz, size_w, size_h, flags, callback, user_data)`
+- `ImGui_InputTextWithHint(ctx, label, hint, buf, buf_sz, flags, callback, user_data)`
+- `ImGui_IsMouseDragging(ctx)`
+- `ImGui_PopStyleColor(ctx, count)`
+- `ImGui_PushStyleColor(ctx, idx, col)`
+- `ImGui_ResetMouseDragDelta(ctx, label, value)`
+- `ImGui_SetColorEditOptions(ctx, value, color)`
+- `ImGui_SetDragDropPayload(ctx, value)`
+- `ImGui_SliderAngle(ctx, label, value)`
+- `ImGui_SliderDouble(ctx, label, v, v_min, v_max, format, flags)`
+- `ImGui_SliderDouble2(ctx, label, value)`
+- `ImGui_SliderDouble3(ctx, label, value)`
+- `ImGui_SliderDouble4(ctx, label, value)`
+- `ImGui_SliderDoubleN(ctx, label, value)`
+- `ImGui_SliderInt(ctx, label, v, v_min, v_max, format, flags)`
+- `ImGui_SliderInt2(ctx, label, value)`
+- `ImGui_SliderInt3(ctx, label, value)`
+- `ImGui_SliderInt4(ctx, label, value)`
+- `ImGui_SliderScalar(ctx, label, value)`
+- `ImGui_StyleColorsClassic(ctx, color)`
+- `ImGui_StyleColorsDark(ctx)`
+- `ImGui_StyleColorsLight(ctx, color)`
+- `ImGui_TableSetBgColor(ctx, color)`
+- `ImGui_TextColored(ctx, col, text)`
+- `ImGui_VSliderDouble(ctx, label, value)`
+- `ImGui_VSliderInt(ctx, label, value)`
+- `ImGui_WindowFlags_NoMouseInputs()`
+
+## Display Functions (30)
+
+- `ImGui_AlignTextToFramePadding(ctx, text)`
+- `ImGui_Bullet(ctx)`
+- `ImGui_BulletText(ctx, text)`
+- `ImGui_CalcTextSize(ctx, text, width, height)`
+- `ImGui_Col_Text()`
+- `ImGui_Col_TextDisabled()`
+- `ImGui_CreateContext(name)`
+- `ImGui_CreateImageFromMem(ctx, text)`
+- `ImGui_CreateTextFilter(ctx, text)`
+- `ImGui_DestroyContext(ctx)`
+- `ImGui_DrawList_AddImage(ctx, text)`
+- `ImGui_DrawList_AddText(ctx, text)`
+- `ImGui_DrawList_AddTextEx(ctx, text)`
+- `ImGui_GetTextLineHeight(ctx)`
+- `ImGui_GetTextLineHeightWithSpacing(ctx)`
+- `ImGui_Image(ctx, text)`
+- `ImGui_ImageButton(ctx, label)`
+- `ImGui_Image_GetSize(ctx, text, width, height)`
+- `ImGui_LabelText(ctx, label, text)`
+- `ImGui_LogText(ctx, text)`
+- `ImGui_PopTextWrapPos(ctx, x, y)`
+- `ImGui_PushTextWrapPos(ctx, x, y)`
+- `ImGui_SeparatorText(ctx, text)`
+- `ImGui_Text(ctx, text)`
+- `ImGui_TextDisabled(ctx, text)`
+- `ImGui_TextFilter_Draw(ctx, text)`
+- `ImGui_TextFilter_IsActive(ctx, text)`
+- `ImGui_TextFilter_PassFilter(ctx, text)`
+- `ImGui_TextUnformatted(ctx, text)`
+- `ImGui_TextWrapped(ctx, text)`
+
+## Layout Functions (19)
+
+- `ImGui_Indent(ctx, indent_w)`
+- `ImGui_PopButtonRepeat(ctx)`
+- `ImGui_PopFont(ctx)`
+- `ImGui_PopID(ctx)`
+- `ImGui_PopItemWidth(ctx)`
+- `ImGui_PopStyleVar(ctx, count)`
+- `ImGui_PopTabStop(ctx)`
+- `ImGui_PushButtonRepeat(ctx)`
+- `ImGui_PushFont(ctx, font)`
+- `ImGui_PushID(ctx)`
+- `ImGui_PushItemWidth(ctx)`
+- `ImGui_PushStyleVar(ctx, idx, val, val2)`
+- `ImGui_PushTabStop(ctx)`
+- `ImGui_Spacing(ctx)`
+- `ImGui_StyleVar_IndentSpacing()`
+- `ImGui_StyleVar_ItemInnerSpacing()`
+- `ImGui_StyleVar_ItemSpacing()`
+- `ImGui_TabItemFlags_NoPushId()`
+- `ImGui_Unindent(ctx, indent_w)`
+
+## Table Functions (17)
+
+- `ImGui_Selectable(ctx, label, selected, flags, size_w, size_h)`
+- `ImGui_TableAngledHeadersRow(ctx)`
+- `ImGui_TableFlags_NoBordersInBody(ctx, flags)`
+- `ImGui_TableFlags_NoBordersInBodyUntilResize(ctx, flags)`
+- `ImGui_TableGetColumnFlags(ctx, flags)`
+- `ImGui_TableGetColumnIndex(ctx)`
+- `ImGui_TableGetColumnName(ctx)`
+- `ImGui_TableGetColumnSortSpecs(ctx)`
+- `ImGui_TableGetRowIndex(ctx)`
+- `ImGui_TableHeader(ctx)`
+- `ImGui_TableHeadersRow(ctx)`
+- `ImGui_TableNeedSort(ctx)`
+- `ImGui_TableNextColumn(ctx)`
+- `ImGui_TableNextRow(ctx)`
+- `ImGui_TableSetColumnIndex(ctx)`
+- `ImGui_TableSetupColumn(ctx)`
+- `ImGui_TableSetupScrollFreeze(ctx)`
+
+## Tree Functions (4)
+
+- `ImGui_GetTreeNodeToLabelSpacing(ctx)`
+- `ImGui_TreeNode(ctx)`
+- `ImGui_TreeNodeEx(ctx)`
+- `ImGui_TreePop(ctx)`
+
+## Menu Functions (3)
+
+- `ImGui_Col_MenuBarBg()`
+- `ImGui_MenuItem(ctx, label, shortcut, selected, enabled)`
+- `ImGui_WindowFlags_MenuBar()`
+
+## Popup Functions (7)
+
+- `ImGui_CloseCurrentPopup(ctx)`
+- `ImGui_Col_PopupBg()`
+- `ImGui_OpenPopup(ctx)`
+- `ImGui_OpenPopupOnItemClick(ctx)`
+- `ImGui_StyleVar_PopupBorderSize()`
+- `ImGui_StyleVar_PopupRounding()`
+- `ImGui_TabBarFlags_TabListPopupButton()`
+
+## Drawing Functions (37)
+
+- `ImGui_CreateDrawListSplitter(ctx)`
+- `ImGui_DrawListSplitter_Merge(ctx)`
+- `ImGui_DrawListSplitter_SetCurrentChannel(ctx)`
+- `ImGui_DrawListSplitter_Split(ctx)`
+- `ImGui_DrawList_AddBezierCubic(ctx)`
+- `ImGui_DrawList_AddBezierQuadratic(ctx)`
+- `ImGui_DrawList_AddCircle(ctx)`
+- `ImGui_DrawList_AddCircleFilled(ctx)`
+- `ImGui_DrawList_AddEllipse(ctx)`
+- `ImGui_DrawList_AddEllipseFilled(ctx)`
+- `ImGui_DrawList_AddLine(ctx)`
+- `ImGui_DrawList_AddNgon(ctx)`
+- `ImGui_DrawList_AddNgonFilled(ctx)`
+- `ImGui_DrawList_AddPolyline(ctx)`
+- `ImGui_DrawList_AddRect(ctx)`
+- `ImGui_DrawList_AddRectFilled(ctx)`
+- `ImGui_DrawList_AddTriangle(ctx)`
+- `ImGui_DrawList_AddTriangleFilled(ctx)`
+- `ImGui_DrawList_PathArcTo(ctx)`
+- `ImGui_DrawList_PathBezierQuadraticCurveTo(ctx)`
+- `ImGui_DrawList_PathFillConcave(ctx)`
+- `ImGui_DrawList_PathFillConvex(ctx)`
+- `ImGui_DrawList_PathLineTo(ctx)`
+- `ImGui_DrawList_PathStroke(ctx)`
+- `ImGui_DrawList_PopClipRect(ctx)`
+- `ImGui_DrawList_PushClipRect(ctx)`
+- `ImGui_GetBackgroundDrawList(ctx)`
+- `ImGui_GetForegroundDrawList(ctx)`
+- `ImGui_GetItemRectMax(ctx)`
+- `ImGui_GetItemRectMin(ctx)`
+- `ImGui_GetItemRectSize(ctx)`
+- `ImGui_GetWindowDrawList(ctx)`
+- `ImGui_NewLine(ctx)`
+- `ImGui_PlotLines(ctx)`
+- `ImGui_PopClipRect(ctx)`
+- `ImGui_PushClipRect(ctx)`
+- `ImGui_SameLine(ctx, offset_from_start_x, spacing)`
+
+## Query Functions (76)
+
+- `ImGui_CreateListClipper(ctx)`
+- `ImGui_Function_GetValue(ctx)`
+- `ImGui_Function_GetValue_String(ctx)`
+- `ImGui_GetBuiltinPath(ctx)`
+- `ImGui_GetColumnIndex(ctx)`
+- `ImGui_GetColumnOffset(ctx)`
+- `ImGui_GetColumnWidth(ctx)`
+- `ImGui_GetConfigVar(ctx)`
+- `ImGui_GetContentRegionAvail(ctx)`
+- `ImGui_GetCursorPos(ctx)`
+- `ImGui_GetCursorPosX(ctx)`
+- `ImGui_GetCursorScreenPos(ctx)`
+- `ImGui_GetCursorStartPos(ctx)`
+- `ImGui_GetDeltaTime(ctx)`
+- `ImGui_GetFont(ctx)`
+- `ImGui_GetFontSize(ctx)`
+- `ImGui_GetFrameCount(ctx)`
+- `ImGui_GetFrameHeight(ctx)`
+- `ImGui_GetFrameHeightWithSpacing(ctx)`
+- `ImGui_GetIO(ctx)`
+- `ImGui_GetItemID(ctx)`
+- `ImGui_GetKeyDownDuration(ctx)`
+- `ImGui_GetMainViewport(ctx)`
+- `ImGui_GetMouseClickedPos(ctx)`
+- `ImGui_GetMouseCursor(ctx)`
+- `ImGui_GetMouseDelta(ctx)`
+- `ImGui_GetMouseDownDuration(ctx)`
+- `ImGui_GetMousePos(ctx)`
+- `ImGui_GetMouseWheel(ctx)`
+- `ImGui_GetScrollMaxX(ctx)`
+- `ImGui_GetScrollMaxY(ctx)`
+- `ImGui_GetScrollX(ctx)`
+- `ImGui_GetScrollY(ctx)`
+- `ImGui_GetStyleVar(ctx)`
+- `ImGui_GetTime(ctx)`
+- `ImGui_GetVersion(ctx)`
+- `ImGui_GetWindowContentRegionMax(ctx)`
+- `ImGui_GetWindowDockID(ctx)`
+- `ImGui_GetWindowPos(ctx)`
+- `ImGui_GetWindowSize(ctx)`
+- `ImGui_GetWindowViewport(ctx)`
+- `ImGui_GetWindowWidth(ctx)`
+- `ImGui_InvisibleButton(ctx, str_id, size_w, size_h, flags)`
+- `ImGui_IsAnyItemHovered(ctx)`
+- `ImGui_IsItemActivated(ctx)`
+- `ImGui_IsItemActive(ctx)`
+- `ImGui_IsItemClicked(ctx, mouse_button)`
+- `ImGui_IsItemDeactivated(ctx)`
+- `ImGui_IsItemDeactivatedAfterEdit(ctx)`
+- `ImGui_IsItemEdited(ctx)`
+- `ImGui_IsItemFocused(ctx)`
+- `ImGui_IsItemHovered(ctx, flags)`
+- `ImGui_IsItemToggledOpen(ctx)`
+- `ImGui_IsItemVisible(ctx)`
+- `ImGui_IsKeyDown(ctx)`
+- `ImGui_IsKeyPressed(ctx)`
+- `ImGui_IsMouseClicked(ctx)`
+- `ImGui_IsMouseDoubleClicked(ctx)`
+- `ImGui_IsMouseDown(ctx)`
+- `ImGui_IsMousePosValid(ctx, x, y)`
+- `ImGui_IsMouseReleased(ctx)`
+- `ImGui_IsWindowDocked(ctx)`
+- `ImGui_IsWindowFocused(ctx)`
+- `ImGui_IsWindowHovered(ctx)`
+- `ImGui_ListBox(ctx, label, current_item, items, height_in_items)`
+- `ImGui_ListClipper_GetDisplayRange(ctx)`
+- `ImGui_ListClipper_Step(ctx)`
+- `ImGui_LogFinish(ctx)`
+- `ImGui_PlotHistogram(ctx)`
+- `ImGui_SetNextFrameWantCaptureKeyboard(ctx, value)`
+- `ImGui_SetNextFrameWantCaptureMouse(ctx, value)`
+- `ImGui_TabBarFlags_NoTabListScrollingButtons()`
+- `ImGui_Viewport_GetCenter(ctx)`
+- `ImGui_Viewport_GetPos(ctx, x, y)`
+- `ImGui_Viewport_GetWorkPos(ctx, x, y)`
+- `ImGui_Viewport_GetWorkSize(ctx, width, height)`
+
+## Other Functions (130)
+
+- `ImGui_ArrowButton(ctx, str_id, dir)`
+- `ImGui_Attach(ctx, font)`
+- `ImGui_Button(ctx, label, size_w, size_h)`
+- `ImGui_CalcItemWidth(ctx)`
+- `ImGui_Checkbox(ctx, label, v)`
+- `ImGui_CheckboxFlags(ctx, label, flags, flags_value)`
+- `ImGui_Col_Border()`
+- `ImGui_Col_BorderShadow()`
+- `ImGui_Col_Button()`
+- `ImGui_Col_ButtonActive()`
+- `ImGui_Col_ButtonHovered()`
+- `ImGui_Col_CheckMark()`
+- `ImGui_Col_ChildBg()`
+- `ImGui_Col_FrameBg()`
+- `ImGui_Col_FrameBgActive()`
+- `ImGui_Col_FrameBgHovered()`
+- `ImGui_Col_Header()`
+- `ImGui_Col_HeaderActive()`
+- `ImGui_Col_HeaderHovered()`
+- `ImGui_Col_ScrollbarBg()`
+- `ImGui_Col_ScrollbarGrab()`
+- `ImGui_Col_ScrollbarGrabActive()`
+- `ImGui_Col_ScrollbarGrabHovered()`
+- `ImGui_Col_TitleBg()`
+- `ImGui_Col_TitleBgActive()`
+- `ImGui_Col_TitleBgCollapsed()`
+- `ImGui_Col_WindowBg()`
+- `ImGui_CollapsingHeader(ctx)`
+- `ImGui_Columns(ctx)`
+- `ImGui_Combo(ctx, label, current_item, items, popup_max_height_in_items)`
+- `ImGui_CreateFont(name, size, flags)`
+- `ImGui_CreateFunctionFromEEL(ctx)`
+- `ImGui_DebugStartItemPicker(ctx)`
+- `ImGui_Dummy(ctx, size_w, size_h)`
+- `ImGui_Function_SetValue(ctx)`
+- `ImGui_Function_SetValue_String(ctx)`
+- `ImGui_LogToClipboard(ctx)`
+- `ImGui_LogToFile(ctx)`
+- `ImGui_LogToTTY(ctx)`
+- `ImGui_NextColumn(ctx)`
+- `ImGui_NumericLimits_Double(ctx)`
+- `ImGui_NumericLimits_Float(ctx)`
+- `ImGui_ProgressBar(ctx)`
+- `ImGui_RadioButton(ctx, label, active)`
+- `ImGui_RadioButtonEx(ctx, label, v, v_button)`
+- `ImGui_Separator(ctx)`
+- `ImGui_SetConfigVar(ctx, value)`
+- `ImGui_SetCursorPosX(ctx, value, x, y)`
+- `ImGui_SetCursorScreenPos(ctx, value, x, y)`
+- `ImGui_SetItemDefaultFocus(ctx, value)`
+- `ImGui_SetItemTooltip(ctx, text)`
+- `ImGui_SetKeyboardFocusHere(ctx, value)`
+- `ImGui_SetMouseCursor(ctx, value)`
+- `ImGui_SetNextItemAllowOverlap(ctx, value)`
+- `ImGui_SetNextItemOpen(ctx, value)`
+- `ImGui_SetNextItemShortcut(ctx, value)`
+- `ImGui_SetNextItemWidth(ctx, value)`
+- `ImGui_SetNextWindowBgAlpha(ctx, value)`
+- `ImGui_SetNextWindowContentSize(ctx, value, width, height)`
+- `ImGui_SetNextWindowDockID(ctx, value)`
+- `ImGui_SetNextWindowPos(ctx, x, y, cond, pivot_x, pivot_y)`
+- `ImGui_SetNextWindowSize(ctx, width, height, cond)`
+- `ImGui_SetNextWindowSizeConstraints(ctx, value, width, height)`
+- `ImGui_SetScrollFromPosX(ctx, value, x, y)`
+- `ImGui_SetScrollFromPosY(ctx, value, x, y)`
+- `ImGui_SetScrollHereX(ctx, value)`
+- `ImGui_SetScrollHereY(ctx, value)`
+- `ImGui_SetScrollX(ctx, value)`
+- `ImGui_SetScrollY(ctx, value)`
+- `ImGui_SetTooltip(ctx, text)`
+- `ImGui_SetWindowFontScale(ctx, value)`
+- `ImGui_SetWindowSize(ctx, value, width, height)`
+- `ImGui_Shortcut(ctx)`
+- `ImGui_ShowAboutWindow(ctx)`
+- `ImGui_ShowDebugLogWindow(ctx)`
+- `ImGui_ShowFontAtlas(ctx)`
+- `ImGui_ShowFontSelector(ctx)`
+- `ImGui_ShowIDStackToolWindow(ctx)`
+- `ImGui_ShowMetricsWindow(ctx)`
+- `ImGui_ShowStyleSelector(ctx)`
+- `ImGui_SmallButton(ctx, label)`
+- `ImGui_StyleVar_Alpha()`
+- `ImGui_StyleVar_ChildBorderSize()`
+- `ImGui_StyleVar_ChildRounding()`
+- `ImGui_StyleVar_FrameBorderSize()`
+- `ImGui_StyleVar_FramePadding()`
+- `ImGui_StyleVar_FrameRounding()`
+- `ImGui_StyleVar_GrabMinSize()`
+- `ImGui_StyleVar_GrabRounding()`
+- `ImGui_StyleVar_ScrollbarRounding()`
+- `ImGui_StyleVar_ScrollbarSize()`
+- `ImGui_StyleVar_TabRounding()`
+- `ImGui_StyleVar_WindowBorderSize()`
+- `ImGui_StyleVar_WindowMinSize()`
+- `ImGui_StyleVar_WindowPadding()`
+- `ImGui_StyleVar_WindowRounding()`
+- `ImGui_StyleVar_WindowTitleAlign()`
+- `ImGui_TabBarFlags_AutoSelectNewTabs()`
+- `ImGui_TabBarFlags_FittingPolicyResizeDown()`
+- `ImGui_TabBarFlags_FittingPolicyScroll()`
+- `ImGui_TabBarFlags_NoCloseWithMiddleMouseButton()`
+- `ImGui_TabBarFlags_NoTooltip()`
+- `ImGui_TabBarFlags_None()`
+- `ImGui_TabBarFlags_Reorderable()`
+- `ImGui_TabItemButton(ctx, label)`
+- `ImGui_TabItemFlags_Leading()`
+- `ImGui_TabItemFlags_NoCloseWithMiddleMouseButton()`
+- `ImGui_TabItemFlags_NoReorder()`
+- `ImGui_TabItemFlags_NoTooltip()`
+- `ImGui_TabItemFlags_None()`
+- `ImGui_TabItemFlags_SetSelected()`
+- `ImGui_TabItemFlags_Trailing()`
+- `ImGui_TabItemFlags_UnsavedDocument()`
+- `ImGui_ValidatePtr(ctx)`
+- `ImGui_WindowFlags_AlwaysAutoResize()`
+- `ImGui_WindowFlags_AlwaysHorizontalScrollbar()`
+- `ImGui_WindowFlags_AlwaysUseWindowPadding()`
+- `ImGui_WindowFlags_AlwaysVerticalScrollbar()`
+- `ImGui_WindowFlags_HorizontalScrollbar()`
+- `ImGui_WindowFlags_NoBackground()`
+- `ImGui_WindowFlags_NoBringToFrontOnFocus()`
+- `ImGui_WindowFlags_NoCollapse()`
+- `ImGui_WindowFlags_NoFocusOnAppearing()`
+- `ImGui_WindowFlags_NoMove()`
+- `ImGui_WindowFlags_NoResize()`
+- `ImGui_WindowFlags_NoSavedSettings()`
+- `ImGui_WindowFlags_NoScrollWithMouse()`
+- `ImGui_WindowFlags_NoScrollbar()`
+- `ImGui_WindowFlags_NoTitleBar()`
+- `ImGui_WindowFlags_None()`
+
